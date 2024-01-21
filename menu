@@ -1,0 +1,156 @@
+#include <iostream>
+
+using namespace std;
+
+int* tablica = NULL;
+
+int Menu() {
+    int opcja;
+    system("cls");
+    cout << "Menu" << endl;
+    cout << "------------------------" << endl;
+    cout << " [1] Dodaj element" << endl;
+    cout << " [2] Wstaw element" << endl;
+    cout << " [3] Usun element" << endl;
+    cout << " [4] Wyswietl tablice" << endl;
+    cout << " [5] Wyjdz z programu" << endl;
+    cout << "-------------------------" << endl;
+    cout << "Wybierz opcje: ";
+    cin >> opcja;
+    return opcja;
+}
+
+void DodajElement(int*& tablica, int& rozmiar) {
+    int nowyRozmiar = rozmiar + 1;
+    int* nowatablica = new int[nowyRozmiar];
+
+    for (int i = 0; i < rozmiar; ++i) {
+        nowatablica[i] = tablica[i];
+    }
+
+    cout << "Podaj nowy element: ";
+    cin >> nowaTablica[rozmiar];
+
+    delete[] tablica;
+    tablica = nowaTablica;
+    rozmiar = nowyRozmiar;
+
+    cout << "Element dodany" << endl;
+    system("pause");
+}
+
+void WstawElement(int*& tablica, int& rozmiar) {
+    int pozycja;
+
+    cout << "Podaj pozycje do wstawienia: ";
+    cin >> pozycja;
+
+    if (pozycja < 1 || pozycja > rozmiar + 1) {
+        cout << "Nieprawidlowa pozycja" << endl;
+        system("pause");
+        return;
+    }
+
+    int nowyRozmiar = rozmiar + 1;
+    int* nowaTablica = new int[nowyRozmiar];
+
+    for (int i = 0; i < pozycja - 1; ++i) {
+        nowaTablica[i] = tablica[i];
+    }
+
+    cout << "Podaj nowy element: ";
+    cin >> nowaTablica[pozycja - 1];
+
+    for (int i = pozycja; i < nowyRozmiar; ++i) {
+        nowaTablica[i] = tablica[i - 1];
+    }
+
+    delete[] tablica;
+    tablica = nowaTablica;
+    rozmiar = nowyRozmiar;
+
+    cout << "Element wstawiony" << endl;
+    system("pause");
+}
+
+void UsunElement(int*& tablica, int& rozmiar) {
+    if (rozmiar == 0) {
+        cout << "Tablica jest pusta" << endl;
+        system("pause");
+        return;
+    }
+
+    int pozycja;
+
+    cout << "Podaj pozycje do usuniecia: ";
+    cin >> pozycja;
+
+    if (pozycja < 1 || pozycja > rozmiar) {
+        cout << "Nieprawidlowa pozycja" << endl;
+        system("pause");
+        return;
+    }
+
+    int nowyRozmiar = rozmiar - 1;
+    int* nowaTablica = new int[nowyRozmiar];
+
+    for (int i = 0; i < pozycja - 1; ++i) {
+        nowaTablica[i] = tablica[i];
+    }
+
+    for (int i = pozycja; i < rozmiar; ++i) {
+        nowaTablica[i - 1] = tablica[i];
+    }
+
+    delete[] tablica;
+    tablica = nowaTablica;
+    rozmiar = nowyRozmiar;
+
+    cout << "Element usuniety" << endl;
+    system("pause");
+}
+
+void WyswietlTablice(int*& tablica, int& rozmiar) {
+    if (rozmiar == 0) {
+        cout << "Tablica jest pusta" << endl;
+    } else {
+        cout << "Tablica: ";
+        for (int i = 0; i < rozmiar; ++i) {
+            cout << tablica[i] << " ";
+        }
+        cout << "\n";
+    }
+    system("pause");
+}
+
+int main() {
+    int rozmiar = 0;
+
+    while (true) {
+        int opcja = Menu();
+
+        switch (opcja) {
+            case 1:
+                DodajElement(tablica, rozmiar);
+                break;
+            case 2:
+                WstawElement(tablica, rozmiar);
+                break;
+            case 3:
+                UsunElement(tablica, rozmiar);
+                break;
+            case 4:
+                WyswietlTablice(tablica, rozmiar);
+                break;
+            case 5:
+                delete[] tablica; 
+                return 0;
+            default:
+                cout << "Nieprawidlowa opcja" << endl;
+                system("pause");
+                break;
+        }
+    }
+
+    return 0;
+}
